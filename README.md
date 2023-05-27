@@ -1,13 +1,4 @@
-
-          .d8888b.                    888    
-         d88P  Y88b                   888    
-              .d88P                   888    
-.d8888b      8888"   .d88b.  88888b.  888888 
-88K           "Y8b. d8P  Y8b 888 "88b 888    
-"Y8888b. 888    888 88888888 888  888 888    
-     X88 Y88b  d88P Y8b.     888  888 Y88b.  
- 88888P'  "Y8888P"   "Y8888  888  888  "Y888 
-
+![SEENT](https://github.com/datas0lutions/s3ent/assets/134785585/70ee65fe-19d2-4231-a694-2a8f51581737)
 
 # s3ent
 (Anonymous) s3 Enumeration Tool
@@ -16,7 +7,6 @@ A very basic script that will allow you to anonymously view all objects within a
 
 Intended for research use only, to highlight security implications of unprotected AWS s3 file containers. I am not responsible for what you choose to do with your findings.
 
-![SEENT](https://github.com/datas0lutions/s3ent/assets/134785585/70ee65fe-19d2-4231-a694-2a8f51581737)
 
 
 Requirements:
