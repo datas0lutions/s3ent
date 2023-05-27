@@ -24,7 +24,7 @@ def list_objects(bucket, prefix='', delimiter='', continuation_token=None):
         'Bucket': bucket,
         'Prefix': prefix,
         'Delimiter': delimiter,
-        'MaxKeys': 100000
+        'MaxKeys': 1000000
     }
 
     if continuation_token:
