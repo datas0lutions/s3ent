@@ -11,15 +11,17 @@ Intended for research use only, to highlight security implications of unprotecte
 
 Requirements:
 
-python3 and python3-pip 
-boto3: For enabling interaction with AWS services such as S3.
-requests: A Python library for making HTTP requests.
+      python3 and python3-pip 
+      boto3: For enabling interaction with AWS services such as S3.
+      requests: A Python library for making HTTP requests.
+      
+      
 
 To use the script, simply use the bucket name from any container you plan to research. For example, if your target container's URL is:
 
       test123.s3-us-west-2.amazonaws.com
       
-all that is needed is to enter test123 when prompted, and a list of all objects within that container (up to 1 million, feel free to change if needed) will be printed, including "folder" paths within the bucket as well..
+simply enter test123 when prompted, and a list of all objects within that container (up to 1 million, feel free to change if needed) will be printed, including "folder" paths within the bucket as well..
 
 That's it. That's the script.
 
