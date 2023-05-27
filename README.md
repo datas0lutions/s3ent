@@ -5,7 +5,7 @@
 
 A very basic script that will allow you to anonymously view all objects within an open S3 container simply by entering the bucket's name; No AWS credentials or complex setup necessary. 
 
-Intended for research use only, to highlight the implications unprotected AWS s3 file containers, many of which often contain confidential, proprietary, and even personally identifiable information (PII). I am not responsible for what you choose to do with your findings.
+Intended for research use only, to highlight the security implications of unprotected AWS s3 file containers, many of which often contain confidential, proprietary, and even personally identifiable information (PII). I am not responsible for what you choose to do with your findings.
 
 
 
