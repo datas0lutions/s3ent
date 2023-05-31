@@ -4,7 +4,7 @@
 # s3ent
 (Anonymous) s3 Enumeration Tool
 
-A simply script to anonymously view all objects within an open S3 container by entering the bucket's name; No AWS credentials or complex setup necessary. 
+A simple script to anonymously view all objects within an open S3 container by entering the bucket's name; No AWS credentials or complex setup necessary. 
 
 Intended to highlight the security implications of unprotected AWS s3 file containers which often contain confidential, proprietary, and personally identifiable information (PII).
 
