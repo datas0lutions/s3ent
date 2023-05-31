@@ -10,7 +10,6 @@ print(r"""
  88888P'  "Y8888P"   "Y8888  888  888  "Y888 
  """)                 
                                              
-                                             
 import requests
 import boto3
 from botocore import UNSIGNED
@@ -18,13 +17,12 @@ from botocore.client import Config
 
 s3_client = boto3.client("s3", config=Config(signature_version=UNSIGNED))
 
-
-def list_objects(bucket, prefix='', delimiter='', continuation_token=None):
+def list_objects(bucket, output_file, prefix='', delimiter='', continuation_token=None):
     kwargs = {
         'Bucket': bucket,
         'Prefix': prefix,
         'Delimiter': delimiter,
-        'MaxKeys': 1000000
+        'MaxKeys': 100000
     }
 
     if continuation_token:
@@ -32,20 +30,23 @@ def list_objects(bucket, prefix='', delimiter='', continuation_token=None):
 
     response = s3_client.list_objects_v2(**kwargs)
 
-    # Print files
-    for obj in response.get('Contents', []):
-        print('File:', obj['Key'])
+    # Write files and folders to the output file
+    with open(output_file, 'a') as file:
+        for obj in response.get('Contents', []):
+            file.write('File: ' + obj['Key'] + '\n')
+            print('File:', obj['Key'])
 
-    # Print folders
-    for common_prefix in response.get('CommonPrefixes', []):
-        print('Folder:', common_prefix['Prefix'])
-        list_objects(bucket, prefix=common_prefix['Prefix'], delimiter=delimiter)
+        for common_prefix in response.get('CommonPrefixes', []):
+            file.write('Folder: ' + common_prefix['Prefix'] + '\n')
+            print('Folder:', common_prefix['Prefix'])
+            list_objects(bucket, output_file, prefix=common_prefix['Prefix'], delimiter=delimiter)
 
     if response['IsTruncated']:
-        list_objects(bucket, prefix=prefix, delimiter=delimiter, continuation_token=response['NextContinuationToken'])
+        list_objects(bucket, output_file, prefix=prefix, delimiter=delimiter, continuation_token=response['NextContinuationToken'])
 
 
 bucket_name = input("Enter Bucket: ")  # Prompting user for bucket name
+output_file_name = input("Enter Output File Name: ")  # Prompting user for output file name
 prefix = ''
-list_objects(bucket_name, prefix=prefix)
 
+list_objects(bucket_name, output_file_name, prefix=prefix)
