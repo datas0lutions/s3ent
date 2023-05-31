@@ -1,4 +1,5 @@
-![SEENT](https://github.com/datas0lutions/s3ent/assets/134785585/70ee65fe-19d2-4231-a694-2a8f51581737)
+![seent](https://github.com/datas0lutions/s3ent/assets/134785585/d9755e35-dc28-4eb6-bc2e-7d89adf5b924)
+
 
 # s3ent
 (Anonymous) s3 Enumeration Tool
@@ -17,13 +18,13 @@ Requirements:
       
       
 
-To use the script, simply use the bucket name from any container you plan to research. For example, if your target container's URL is:
+To use the script, simply input the bucket name from any container you plan to research. For example, if your target container's URL is:
 
       test123.s3-us-west-2.amazonaws.com
       
-simply enter test123 when prompted, and a list of all objects within that container (up to 1 million, feel free to change if needed) will be printed, including "folder" paths within the bucket as well..
+simply enter test123. When prompted for an output file name, choose any name you prefer, then press enter. The script will list the entire contents of the chosen bucket both in the terminal as well as a text file with the name you chose as the output file name. (Currently lists up to 1 million, feel free to change if needed)
 
-That's it. That's the script.
+
 
 
      
