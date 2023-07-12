@@ -10,6 +10,7 @@ print(r"""
  88888P'  "Y8888P"   "Y8888  888  888  "Y888 
  """)                 
                                              
+import argparse
 import requests
 import boto3
 from botocore import UNSIGNED
@@ -22,7 +23,7 @@ def list_objects(bucket, output_file, prefix='', delimiter='', continuation_toke
         'Bucket': bucket,
         'Prefix': prefix,
         'Delimiter': delimiter,
-        'MaxKeys': 100000
+        'MaxKeys': 1000000
     }
 
     if continuation_token:
@@ -34,19 +35,33 @@ def list_objects(bucket, output_file, prefix='', delimiter='', continuation_toke
     with open(output_file, 'a') as file:
         for obj in response.get('Contents', []):
             file.write('File: ' + obj['Key'] + '\n')
-            print('File:', obj['Key'])
+            if not args.quiet:
+                print('File:', obj['Key'])
 
         for common_prefix in response.get('CommonPrefixes', []):
             file.write('Folder: ' + common_prefix['Prefix'] + '\n')
-            print('Folder:', common_prefix['Prefix'])
+            if not args.quiet:
+                print('Folder:', common_prefix['Prefix'])
             list_objects(bucket, output_file, prefix=common_prefix['Prefix'], delimiter=delimiter)
 
     if response['IsTruncated']:
         list_objects(bucket, output_file, prefix=prefix, delimiter=delimiter, continuation_token=response['NextContinuationToken'])
 
+# Create the argument parser
+parser = argparse.ArgumentParser()
+parser.add_argument('-b', '--bucket', required=True, help='Bucket Name')
+parser.add_argument('-o', '--output', help='Output File Name')
+parser.add_argument('-q', '--quiet', action='store_true', help='Quiet output')
+args = parser.parse_args()
 
-bucket_name = input("Enter Bucket: ")  # Prompting user for bucket name
-output_file_name = input("Enter Output File Name: ")  # Prompting user for output file name
-prefix = ''
+bucket_name = args.bucket
 
-list_objects(bucket_name, output_file_name, prefix=prefix)
+if args.output:
+    output_file_name = args.output
+else:
+    output_file_name = bucket_name + '.txt'
+
+if args.quiet:
+    print("Gathering files...")
+
+list_objects(bucket_name, output_file_name)
