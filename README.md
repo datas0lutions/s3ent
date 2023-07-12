@@ -1,5 +1,3 @@
-![seent](https://github.com/datas0lutions/s3ent/assets/134785585/d9755e35-dc28-4eb6-bc2e-7d89adf5b924)
-
 
 # s3ent
 (Anonymous) s3 Enumeration Tool
@@ -10,21 +8,40 @@ Intended to highlight the security implications of unprotected AWS s3 file conta
 
 
 
-Requirements:
+To use the script, follow these steps:
 
-      python3 and python3-pip 
-      boto3: For enabling interaction with AWS services such as S3.
-      requests: A Python library for making HTTP requests.
-      
-      
+1. Clone the repository or download `s3ent.py` to your local machine.
 
-To use the script, simply input the bucket name from any container you plan to research. For example, if your target container's URL is:
+2. Make sure you have Python 3 installed on your system.
 
-      test123.s3-us-west-2.amazonaws.com
-      
-simply enter test123. When prompted for an output file name, choose any name you prefer, then press enter. The script will list the entire contents of the chosen bucket both in the terminal as well as a text file with the name you chose as the output file name. (Currently lists up to 1 million, feel free to change if needed)
+3. Install the required dependencies
+   
+   ```shell
+   pip3 install boto3 requests
+   ```
 
+4. Run the script with the desired options as outlined below:
 
+   ```shell
+   python3 s3ent.py -b <bucket_name> [-o <output_file>] [-q]
+   ```
 
+   - `-b <bucket_name>` specifies the name of the S3 bucket you want to list.
+   - `-o <output_file>` (optional) specifies a custom name for the output file. If not provided, the default output file name will be the same as the bucket name.
+   - `-q` (optional) runs the script in quiet mode, which suppresses verbose output. By default, the script runs in verbose mode.
+
+### Examples
+
+1. To list files and folders in an S3 bucket named "test" in verbose mode, and save the output to a file named "test.txt", run the following command:
+
+   ```shell
+   python3 s3ent.py -b test -o test.txt
+   ```
+
+2. To list files and folders in an S3 bucket named "test" in quiet mode (suppressing verbose output), with the default output file name, run the following command:
+
+   ```shell
+   python3 s3ent.py -b test -q
+   ```
 
      
